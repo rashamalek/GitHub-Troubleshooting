@@ -237,10 +237,17 @@ sudo systemctl start gpgverify
 
 ghe-support-bundle errors
 Sometimes when you try generate logs you get the following:
-$ ssh -p 122 admin@git.uberit.net -- 'ghe-support-bundle -x -o' > /d/syslog/support/support-bundle.tgz
+```bash
+ssh -p 122 admin@git.domain.com -- 'ghe-support-bundle -x -o' > /d/syslog/support/support-bundle.tgz
 mkdir: cannot create directory '/var/log/haproxy.log.1': File exists
+```
 
-$ ssh -p 122 admin@git.uberit.net -- 'ghe-support-bundle -o' > /d/syslog/support/support-bundle.tgz
+```bash
+$ ssh -p 122 admin@git.domain.com -- 'ghe-support-bundle -o' > /d/syslog/support/support-bundle.tgz
 mkdir: cannot create directory '/var/log/haproxy.log.1': File exists
+```
+
 This is fixed in 2.10.4, but the workaround is:
+```bash
 sudo sed -i 's#sanitize_logs /var/log/haproxy.log\*#sanitize_logs "/var/log/haproxy.log*"#' /usr/local/bin/ghe-support-bundle
+```
