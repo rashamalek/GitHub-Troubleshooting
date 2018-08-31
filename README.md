@@ -2,7 +2,7 @@
 
 Connect to your appliance via SSH:
 ```bash
-ssh -p 122 admin@git.uberit.net
+ssh -p 122 admin@git.domain.com
 ```
 
 
